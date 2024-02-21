@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anwalt-Termin.de Suchergebnisse</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #f2f2f2;
+            padding: 10px;
+            text-align: center;
+        }
+
+        header img {
+            width: 150px;
+            height: auto;
+        }
+
+        .search-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            width: 300px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 8px 20px;
+            border: none;
+            background-color: #808080;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        #results-container {
+            width: 80%;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+
+        .result-item {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .result-item h3 {
+            margin-top: 0;
+        }
+
+        .result-item p {
+            margin-bottom: 0;
+        }
+
+        footer {
+            background-color: #f2f2f2;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        li:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="google_logo.png" alt="Anwalt-Termin.de">
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Suche nach Anwälten...">
+        <button onclick="searchDirectory()">Suche</button>
+    </div>
+
+    <div id="results-container">
+        <!-- Beispiel-Suchergebnis -->
+        <div class="result-item">
+            <h3><a href="https://www.beispielkanzlei.de">Beispielkanzlei</a></h3>
+            <p>Musterstraße 123, 12345 Musterstadt</p>
+        </div>
+        <!-- Hier werden die weiteren Suchergebnisse dynamisch eingefügt -->
+    </div>
+
+    <footer>
+        <p>
+            <a href="#">Datenschutz</a> |
+            <a href="#">Nutzungsbedingungen</a> |
+            <a href="#">Impressum</a>
+        </p>
+    </footer>
+
+    <script>
+        var files = ["Berlin.html", "Hamburg.html", "München.html"]; // Liste der .html-Seiten im Verzeichnis
+
+        function showSuggestions() {
+            var searchTerm = document.getElementById("search").value.toLowerCase();
+            var suggestions = [];
+            if (searchTerm) {
+                suggestions = files.filter(file => file.split('.')[0].toLowerCase().startsWith(searchTerm));
+            }
+
+            displaySuggestions(suggestions);
+        }
+
+        function displaySuggestions(suggestions) {
+            var container = document.getElementById("search-suggestions");
+            container.innerHTML = "";
+
+            if (suggestions.length === 0) {
+                container.style.display = "none";
+                return;
+            }
+
+            container.style.display = "block";
+            var list = document.createElement("ul");
+            suggestions.forEach(function(suggestion) {
+                var listItem = document.createElement("li");
+                listItem.textContent = suggestion.split('.')[0];
+                listItem.onclick = function() {
+                    document.getElementById("search").value = suggestion.split('.')[0];
+                    container.style.display = "none";
+                };
+                list.appendChild(listItem);
+            });
+            container.appendChild(list);
+        }
+
+        function searchDirectory() {
+            var searchTerm = document.getElementById("search").value.toLowerCase();
+            var result = files.find(file => file.split('.')[0].toLowerCase() === searchTerm.toLowerCase());
+            if (result) {
+                window.location.href = result;
+            } else {
+                displayResults("Keine Ergebnisse gefunden.");
+            }
+        }
+
+        function displayResults(message) {
+            var container = document.getElementById("search-results");
+            container.innerHTML = message;
+        }
+    </script>
+</body>
+</html>
