@@ -1,197 +1,256 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Anwalt-Termin.de</title>
-  <style> 
-    .navbar {
-  width: 100%;
-  height: 50px;
-  background-color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anwalt-Termin Suche</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
 
-.nav-links {
-  list-style-type: none;
-}
+        .search-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
 
-.nav-links li {
-  padding: 10px;
-}
+        .search-container h1 {
+            color: #202124;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
 
-.nav-links a {
-  color: white;
-  text-decoration: none;
-}
+        input[type="text"] {
+            width: 300px;
+            height: 20px;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #dfe1e5;
+            border-radius: 24px;
+            box-shadow: none;
+            font-size: 16px;
+            position: relative; /* Hinzugefügt */
+        }
 
-    
-    
-    
-    body {
-  background-color: black;
-}
+        #search-suggestions {
+            width: 300px;
+            margin: 0 auto;
+            text-align: left;
+            position: absolute;
+            top: 100%; /* Abstand zum Suchfeld */
+            left: 0;
+            z-index: 999;
+            background-color: #ffffff;
+            border: 1px solid #dfe1e5;
+            border-radius: 10px; /* Abgerundete Ecken */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Schatten */
+            display: none; /* Standardmäßig ausgeblendet */
+        }
 
-.container {
-  width: 500px;
-  margin: 0 auto;
-}
+        #search-suggestions ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
 
-.btn {
-  width: 100%;
-  height: 100px;
-  background-color: green;
-  color: white;
-  font-size: 2em;
-  font-weight: bold;
-  cursor: pointer;
-}
-* {
-  font-family: Ubuntu, sans-serif;
-}
+        #search-suggestions li {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #dfe1e5; /* Trennlinien zwischen Vorschlägen */
+        }
 
-body {
-  background-color: #000000;
-  color: #ffffff;
-}
+        #search-suggestions li:last-child {
+            border-bottom: none; /* Keine Trennlinie für das letzte Element */
+        }
 
-.navbar {
-  background-color: #000000;
-  color: #ffffff;
-  padding: 10px;
-}
+        #search-suggestions li:hover {
+            background-color: #f8f9fa; /* Hervorhebung bei Hover */
+        }
 
-.navbar-brand {
-  font-size: 2em;
-  font-weight: bold;
-}
+        button {
+            width: 100px;
+            height: 44px;
+            background-color: #f8f9fa;
+            border: 1px solid #f8f9fa;
+            border-radius: 24px;
+            color: #3c4043;
+            text-transform: uppercase;
+            font-size: 14px;
+            cursor: pointer;
+        }
 
-.navbar-nav {
-  margin-top: 10px;
-}
-
-.nav-link {
-  padding: 5px 10px;
-}
-
-.nav-link:hover {
-  background-color: #333333;
-}
-
-.hero {
-  background-color: #000000;
-  color: #ffffff;
-}
-
-.hero-title {
-  font-size: 3em;
-  font-weight: bold;
-}
-
-.hero-text {
-  font-size: 1.5em;
-  line-height: 1.5;
-}
-
-box-shadow: 0px 0px 0px 0px #bdbdbd;
-background-color:transparent;
-border-radius:30px;
-border:5px solid #ffffff;
-display:inline-block;
-cursor:pointer;
-color:#000000;
-font-family:Georgia;
-font-size:17px;
-font-weight:bold;
-padding:16px 31px;
-text-decoration:none;
-text-shadow:0px 1px 0px #ffffff;
-}
-.Button:hover {
-background-color:transparent;
-}
-.Button:active {
-position:relative;
-top:1px;
-}
-</style>
-
-<nav class="navbar">
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="impressum.html">Impressum</a></li>
-  </ul>
-</nav>
-
+        button:hover {
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            background-color: #f0f0f0;
+            border-color: #f0f0f0;
+        }
+    </style>
 </head>
-
-
 <body>
-  <div class="container">
-    <h1>Anwalt-Termin.de</h1>
+    <div class="search-container">
+        <h1>Anwalt-Termin.de</h1>
+        <input type="text" placeholder="Nach Anwälten suchen in..." name="search" id="search" oninput="showSuggestions()">
+        <div id="search-suggestions"></div>
+        <button onclick="searchDirectory()">Suchen</button>
+        <div id="search-results"></div>
+    </div>
 
-<h1>Die Wichtigkeit von digitalen Kalendern für Rechtsanwälte</h1>
+    <script>
+        var files = [
+    "Berlin.html",
+    "Hamburg.html",
+    "München.html",
+    "Köln.html",
+    "Frankfurt_am_Main.html",
+    "Stuttgart.html",
+    "Düsseldorf.html",
+    "Dortmund.html",
+    "Essen.html",
+    "Leipzig.html",
+    "Bremen.html",
+    "Dresden.html",
+    "Hannover.html",
+    "Nürnberg.html",
+    "Duisburg.html",
+    "Bochum.html",
+    "Wuppertal.html",
+    "Bielefeld.html",
+    "Bonn.html",
+    "Münster.html",
+    "Karlsruhe.html",
+    "Mannheim.html",
+    "Augsburg.html",
+    "Wiesbaden.html",
+    "Gelsenkirchen.html",
+    "Mönchengladbach.html",
+    "Braunschweig.html",
+    "Chemnitz.html",
+    "Kiel.html",
+    "Aachen.html",
+    "Halle_(Saale).html",
+    "Magdeburg.html",
+    "Freiburg_im_Breisgau.html",
+    "Krefeld.html",
+    "Lübeck.html",
+    "Oberhausen.html",
+    "Erfurt.html",
+    "Rostock.html",
+    "Mainz.html",
+    "Kassel.html",
+    "Hagen.html",
+    "Saarbrücken.html",
+    "Hamm.html",
+    "Herne.html",
+    "Mülheim_an_der_Ruhr.html",
+    "Ludwigshafen_am_Rhein.html",
+    "Osnabrück.html",
+    "Leverkusen.html",
+    "Oldenburg.html",
+    "Solingen.html",
+    "Potsdam.html",
+    "Neuss.html",
+    "Heidelberg.html",
+    "Paderborn.html",
+    "Darmstadt.html",
+    "Regensburg.html",
+    "Ingolstadt.html",
+    "Würzburg.html",
+    "Fürth.html",
+    "Wolfsburg.html",
+    "Offenbach_am_Main.html",
+    "Ulm.html",
+    "Heilbronn.html",
+    "Pforzheim.html",
+    "Göttingen.html",
+    "Bottrop.html",
+    "Recklinghausen.html",
+    "Reutlingen.html",
+    "Koblenz.html",
+    "Bergisch_Gladbach.html",
+    "Bremerhaven.html",
+    "Jena.html",
+    "Remscheid.html",
+    "Erlangen.html",
+    "Trier.html",
+    "Moers.html",
+    "Siegen.html",
+    "Hildesheim.html",
+    "Salzgitter.html",
+    "Cottbus.html",
+    "Gera.html",
+    "Gütersloh.html",
+    "Kaiserslautern.html",
+    "Schwerin.html",
+    "Iserlohn.html",
+    "Zwickau.html",
+    "Düren.html",
+    "Hanau.html",
+    "Esslingen_am_Neckar.html",
+    "Ludwigsburg.html",
+    "Flensburg.html",
+    "Ratingen.html",
+    "Tübingen.html",
+    "Villingen-Schwenningen.html",
+    "Minden.html",
+    "Worms.html",
+    "Konstanz.html",
+    "Velbert.html",
+    "Marburg.html",
+    "Wilhelmshaven.html"
+]; // Liste der .html-Seiten im Verzeichnis
 
-<p>In der heutigen schnelllebigen Welt ist es für Rechtsanwälte wichtiger denn je, organisiert zu sein. Ein digitaler Kalender ist ein unverzichtbares Werkzeug, um Termine, Fristen und andere wichtige Informationen zu verfolgen.</p>
+        function showSuggestions() {
+            var searchTerm = document.getElementById("search").value.toLowerCase();
+            var suggestions = [];
+            if (searchTerm) {
+                suggestions = files.filter(file => file.split('.')[0].toLowerCase().startsWith(searchTerm));
+            }
 
-<p>Digitale Kalender bieten eine Reihe von Vorteilen gegenüber traditionellen Papierkalendern. Sie sind:</p>
+            displaySuggestions(suggestions);
+        }
 
-<ul>
-<li><strong>Effizienter</strong>: Digitale Kalender können automatisch Termine und Fristen erstellen und erinnern. Dies spart Rechtsanwälten Zeit und Mühe.</li>
-<li><strong>Zugänglich</strong>: Digitale Kalender können von überall aus auf jedem Gerät aufgerufen werden. Dies ist wichtig für Rechtsanwälte, die häufig unterwegs sind.</li>
-<li><strong>Kooperativ</strong>: Digitale Kalender können mit anderen Personen geteilt werden, z. B. mit Mandanten, Mitarbeitern oder Kollegen. Dies erleichtert die Zusammenarbeit.</li>
-</ul>
+        function displaySuggestions(suggestions) {
+            var container = document.getElementById("search-suggestions");
+            container.innerHTML = "";
 
-<p>Die folgenden sind einige konkrete Beispiele dafür, wie digitale Kalender Rechtsanwälten helfen können:</p>
+            if (suggestions.length === 0) {
+                container.style.display = "none";
+                return;
+            }
 
-<ul>
-<li><strong>Terminplanung</strong>: Digitale Kalender können verwendet werden, um Termine mit Mandanten, Gerichten und anderen Beteiligten zu planen. Dies hilft Rechtsanwälten, ihre Zeit zu verwalten und sicherzustellen, dass sie alle wichtigen Termine einhalten.</li>
-<li><strong>Fristenverfolgung</strong>: Digitale Kalender können verwendet werden, um Fristen für Gerichtstermine, Einreichungen und andere wichtige Aufgaben zu verfolgen. Dies hilft Rechtsanwälten, Fristen einzuhalten und rechtliche Komplikationen zu vermeiden.</li>
-<li><strong>Kommunikation</strong>: Digitale Kalender können verwendet werden, um Termine und Fristen mit Mandanten, Mitarbeitern oder Kollegen zu teilen. Dies erleichtert die Zusammenarbeit und stellt sicher, dass alle auf dem gleichen Stand sind.</li>
-</ul>
+            container.style.display = "block";
+            var list = document.createElement("ul");
+            suggestions.forEach(function(suggestion) {
+                var listItem = document.createElement("li");
+                listItem.textContent = suggestion.split('.')[0];
+                listItem.onclick = function() {
+                    document.getElementById("search").value = suggestion.split('.')[0];
+                    container.style.display = "none";
+                };
+                list.appendChild(listItem);
+            });
+            container.appendChild(list);
+        }
 
-<p>Digitale Kalender sind ein unverzichtbares Werkzeug für Rechtsanwälte, die ihre Produktivität und Effizienz verbessern möchten.</p>
+        function searchDirectory() {
+            var searchTerm = document.getElementById("search").value.toLowerCase();
+            var result = files.find(file => file.split('.')[0].toLowerCase() === searchTerm.toLowerCase());
+            if (result) {
+                window.location.href = result;
+            } else {
+                displayResults("Keine Ergebnisse gefunden.");
+            }
+        }
 
-<h2>Tipps für die Verwendung eines digitalen Kalenders für Rechtsanwälte</h2>
-
-<ul>
-<li><strong>Nutzen Sie die Funktionen Ihres Kalenders voll aus.</strong> Viele digitale Kalender bieten eine Reihe von Funktionen, die speziell für Rechtsanwälte entwickelt wurden. Dazu gehören beispielsweise die Möglichkeit, Fristen zu verfolgen, Termine zu wiederholen und Aufgaben zuzuweisen.</li>
-<li><strong>Personalisieren Sie Ihren Kalender.</strong> Passen Sie Ihren Kalender an Ihre individuellen Bedürfnisse an. Dazu gehören beispielsweise die Verwendung verschiedener Farben für verschiedene Arten von Terminen oder die Erstellung von benutzerdefinierten Ansichten.</li>
-<li><strong>Seien Sie organisiert.</strong> Halten Sie Ihren Kalender sauber und aufgeräumt. Dies wird Ihnen helfen, Termine und Fristen leicht zu finden.</li>
-</ul>
-
-<p>Die Verwendung eines digitalen Kalenders kann Rechtsanwälten helfen, ihre Zeit zu verwalten, Fristen einzuhalten und ihre Produktivität zu verbessern.</p>
-
-<br>
-
-
-<style>
-h1 {
-font-size: 2em;
-font-weight: bold;
-margin-top: 0;
-}
-
-p {
-font-size: 1.6em;
-margin-bottom: 1em;
-}
-
-ul {
-list-style-type: disc;
-}
-
-li {
-margin-bottom: 0.5em;
-}
-</style>**
-
-<br>
-    
-    <a href="/anwaltsuche_bundeslaender.html">
-      <button class="btn">Anwalt finden</button>
-    </a>
-  </div>
+        function displayResults(message) {
+            var container = document.getElementById("search-results");
+            container.innerHTML = message;
+        }
+    </script>
 </body>
 </html>
