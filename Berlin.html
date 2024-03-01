@@ -93,6 +93,26 @@
         li:hover {
             background-color: #f0f0f0;
         }
+
+        #results-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.info-container {
+    flex: 1;
+}
+
+.logo-container {
+    margin-left: 10px; /* optional, um etwas Abstand zwischen den Informationen und dem Logo zu haben */
+}
     </style>
 </head>
 <body>
@@ -103,22 +123,92 @@
     <div class="search-container">
         <input type="text" id="search" placeholder="Suche nach Anwälten...">
         <button onclick="searchDirectory()">Suche</button>
-    </div>
-
-    <div id="results-container">
+    </div><div id="results-container">
         <!-- Beispiel-Suchergebnis -->
         <div class="result-item">
-            <h3><a href="https://www.beispielkanzlei.de">Beispielkanzlei</a></h3>
-            <p>Musterstraße 123, 12345 Musterstadt</p>
+            <div class="info-container">
+                <h3><a href="https://rechtsanwalt-kettel.de/">Rechtsanwalt Holger Kettel</a></h3>
+                <p>Alt-Mariendorf 46, 12107 Berlin</p>
+            </div>
+            <div class="logo-container">
+                <!-- Hier das Logo einfügen -->
+                <img src="./holger-kettel.png" alt="Logo">
+            </div>
+        </div>
+        <div class="result-item">
+            <div class="info-container">
+                <h3><a href="http://kanzlei-am-suedstern.de/">Kanzlei am Südstern</a></h3>
+                <p>Gneisenaustr. 51, 10961 Berlin</p>
+            </div>
+            <div class="logo-container">
+                <!-- Hier das Logo einfügen -->
+                <img src="./kanzleiamsuedstern.png" alt="Logo">
+            </div>
+        </div>
+        <div class="result-item">
+            <div class="info-container">
+                <h3><a href="https://www.arbeitsrecht-berlin-mitte.de/kanzlei-berlin/arbeitsrecht-berlin-moabit-mitte/">Anwalt Arbeitsrecht Berlin</a></h3>
+                <p>Waldstr. 37, 10551 Berlin</p>
+            </div>
+            <div class="logo-container">
+                <!-- Hier das Logo einfügen -->
+                <img src="./imanuel-schulz.png" alt="Logo">
+            </div>
+        </div>
+        <div class="result-item">
+            <div class="info-container">
+                <h3><a href="https://www.gueccuek.de/">Rechtsanwältin Fatma Güccük - Berlin</a></h3>
+                <p>Grolmanstr. 36,10623 Berlin </p>
+            </div>
+            <div class="logo-container">
+                <!-- Hier das Logo einfügen -->
+                <img src="./fg.png" alt="Logo">
+            </div>
+        </div>
+        <div class="result-item">
+            <div class="info-container">
+                <h3><a href="https://www.si-recht.de/">SI Rechtsanwalts GmbH</a></h3>
+                <p>Kurfürstendamm 36, 10719 Berlin</p>
+            </div>
+            <div class="logo-container">
+                <!-- Hier das Logo einfügen -->
+                <img src="./sigmbh.png" alt="Logo">
+            </div>
+        </div>
+        <div class="result-item">
+            <div class="info-container">
+                <h3><a href="https://www.beispielkanzlei.de">Beispielkanzlei</a></h3>
+                <p>Musterstraße 123, 12345 Musterstadt</p>
+            </div>
+            <div class="logo-container">
+                <!-- Hier das Logo einfügen -->
+                <img src="pfad/zum/dein-logo.png" alt="Logo">
+            </div>
+        </div>
+
+        <div class="result-item">
+            <div class="info-container">
+                <h3><a href="https://www.beispielkanzlei.de">Beispielkanzlei</a></h3>
+                <p>Musterstraße 123, 12345 Musterstadt</p>
+            </div>
+            <div class="logo-container">
+                <!-- Hier das Logo einfügen -->
+                <img src="pfad/zum/dein-logo.png" alt="Logo">
+            </div>
         </div>
         <!-- Hier werden die weiteren Suchergebnisse dynamisch eingefügt -->
     </div>
+    
+</br>
+</br>
+</br>
+    </br>
 
     <footer>
         <p>
-            <a href="#">Datenschutz</a> |
-            <a href="#">Nutzungsbedingungen</a> |
-            <a href="#">Impressum</a>
+            <a href="Datenschutz.html">Datenschutz</a> |
+            <a href="Nutzungsbedingungen.html">Nutzungsbedingungen</a> |
+            <a href="impressum.html">Impressum</a>
         </p>
     </footer>
 
