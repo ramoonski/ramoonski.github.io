@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anwaltsprofil</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #333;
+        }
+
+        header img.logo {
+            height: 50px;
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        header nav ul li {
+            margin-left: 20px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .anwalt-profil {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .anwalt-bild {
+            border-radius: 50%;
+            margin-right: 20px;
+            width: 100px;
+            height: 100px;
+        }
+
+        .kontakt-info h1 {
+            margin: 0;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            .anwalt-profil, .dienstleistungen {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Kanzlei-Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="#">Startseite</a></li>
+                <li><a href="#">Über uns</a></li>
+                <li><a href="#">Dienstleistungen</a></li>
+                <li><a href="#">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="anwalt-profil">
+        <img src="anwalt-bild.jpg" alt="Anwalt Bild" class="anwalt-bild">
+        <div class="kontakt-info">
+            <h1>Max Mustermann</h1>
+            <p>Spezialgebiet: Familienrecht</p>
+            <p>Tel: 01234 56789</p>
+            <p>Email: max@kanzlei.de</p>
+        </div>
+    </section>
+    
+    <section class="ueber">
+        <h2>Über mich</h2>
+        <p>Hier steht eine kurze Vorstellung des Anwalts, seine Philosophie und was ihn auszeichnet.</p>
+    </section>
+    
+    <section class="dienstleistungen">
+        <h2>Dienstleistungen</h2>
+        <div class="dienstleistung">
+            <h3>Familienrecht</h3>
+            <p>Beschreibung der Dienstleistung im Bereich Familienrecht.</p>
+        </div>
+        <!-- Weitere Dienstleistungen hinzufügen -->
+    </section>
+    
+    <footer>
+        <p>&copy; 2024 Kanzlei Mustermann</p>
+    </footer>
+    
+    <script>
+        // Beispiel für zukünftige interaktive Elemente
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hier könnte Code für interaktive Elemente stehen
+        });
+    </script>
+</body>
+</html>

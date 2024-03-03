@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anwaltsportal</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { display: flex; justify-content: space-between; }
+        .info { width: 60%; }
+        .map { width: 40%; }
+        #contact-form { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="info">
+            <h1>Kanzlei Mustermann</h1>
+            <h2>Unsere Spezialisierungen</h2>
+            <p>Rechtsgebiete: Arbeitsrecht, Familienrecht, Verkehrsrecht</p>
+            <h3>Kontakt</h3>
+            <p>Adresse: Musterstraße 1, 12345 Musterstadt</p>
+            <p>Telefon: 0123 / 4567890</p>
+            <div id="contact-form">
+                <h3>Kontaktieren Sie uns per E-Mail</h3>
+                <form>
+                    <input type="text" name="name" placeholder="Ihr Name" required><br>
+                    <input type="email" name="email" placeholder="Ihre E-Mail-Adresse" required><br>
+                    <textarea name="message" placeholder="Ihre Nachricht" required></textarea><br>
+                    <button type="submit">Senden</button>
+                </form>
+            </div>
+        </div>
+        <div class="map">
+            <h3>Standort auf der Karte</h3>
+            <!-- Beispiel für eine eingebettete Karte (ersetzen Sie den `src` mit Ihrem gewünschten Karten-Link) -->
+            <iframe src="https://maps.google.com/maps?q=Musterstra%C3%9Fe%201%2012345%20Musterstadt&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+        </div>
+    </div>
+</body>
+</html>
