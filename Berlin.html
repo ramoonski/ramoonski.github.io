@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anwalt-Termin.de Suchergebnisse</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #e9d8a6;
+            --primary-text-color: #333;
+            --secondary-text-color: #777;
+            --accent-color: #ee9b00;
+            --button-hover-color: #cc8400;
+            --border-color: #E0E0E0;
+            --result-item-background-color: #FFFFFF;
+            --footer-background-color: #f2f2f2;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--primary-text-color);
+        }
+
+        header {
+            background-color: var(--footer-background-color);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .search-container {
+            text-align: center;
+            margin: 40px auto;
+        }
+
+        input[type="text"] {
+            padding: 10px 15px;
+            width: 40%;
+            max-width: 600px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 16px;
+            outline: none;
+            color: var(--primary-text-color);
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: var(--button-hover-color);
+        }
+
+        #results-container {
+            width: 80%;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            background-color: var(--result-item-background-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .result-item h3, .result-item p {
+            margin: 0;
+            padding-right: 20px;
+        }
+
+        .result-item h3 a {
+            text-decoration: none;
+            color: var(--accent-color);
+        }
+
+        .profile-button {
+            padding: 10px 20px;
+            background-color: #ee9b00;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .profile-button:hover {
+            background-color: #cc8400;
+        }
+
+        footer {
+            background-color: var(--footer-background-color);
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="google_logo.png" alt="Anwalt-Termin.de" style="max-width: 100%; height: auto;">
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Suche nach Anwälten...">
+        <button onclick="searchDirectory()">Suche</button>
+    </div>
+
+    <div id="results-container">
+        <!-- Beispiel-Suchergebnis -->
+        <div class="result-item">
+            <div>
+                <h3><a href="http://www.kanzlei-beermann.de/"> Kanzlei Beermann</a></h3>
+                <p>Schwindstraße 7, 95447 Bayreuth</p>
+            </div>
+            <button class="profile-button" onclick="window.open('./Kanzlei_Beermann_Profil.html', '_blank')">Profil</button>
+        </div>
+        <div class="result-item">
+            <div>
+                <h3><a href="https://www.beispielkanzlei.de"> Kanzlei Beermann</a></h3>
+                <p>Schwindstraße 7, 95447 Bayreuth</p>
+            </div>
+            <button class="profile-button">Profil</button>
+        </div>
+        <!-- Hier werden die weiteren Suchergebnisse dynamisch eingefügt -->
+    </div>
+
+    <footer>
+        <p>
+            <a href="#">Datenschutz</a> |
+            <a href="#">Nutzungsbedingungen</a> |
+            <a href="#">Impressum</a>
+        </p>
+    </footer>
+</body>
+</html>
